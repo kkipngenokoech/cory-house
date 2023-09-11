@@ -5,16 +5,18 @@ import HomePage from "./components/home/Homepage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/common/Header";
 import PageNotFound from "./components/PageNotFound";
+import CoursesPage from "./components/courses/CoursesPage";
 
 function App() {
   return (
     <Router>
       <div className="container-fluid">
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="*" element={<PageNotFound/>}/>
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
     </Router>
