@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from "redux";
 import rootReducer from "./Reducers";
-import reduxImmutableStateInVariant from "redux-immutable-invariant";
+import reduxImmutableStateInvariant from "redux-immutable-state-invariant"; // Corrected import statement
 
 export default function configureStore(initialState) {
   const composeEnhancers =
@@ -8,6 +8,6 @@ export default function configureStore(initialState) {
   return createStore(
     rootReducer,
     initialState,
-    composeEnhancers(applyMiddleware(reduxImmutableStateInVariant())),
+    composeEnhancers(applyMiddleware(reduxImmutableStateInvariant())), // Corrected middleware usage
   );
 }

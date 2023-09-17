@@ -1,17 +1,19 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
+import { connect } from "react-redux";
+import { createCourse } from "../../Redux/Actions/CourseActions";
 
-export default function CoursesPage() {
-  const courses = { title: "", lecturer: "", room: "" };
+function CoursesPage({ courses, createCourse }) {
+  const initialValues = { title: "", lecturer: "", room: "" };
 
   function handleSubmit(values) {
-    console.log(values);
+    createCourse(values);
   }
 
   return (
     <div>
       <h2>Courses</h2>
-      <Formik initialValues={courses} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {() => (
           <Form>
             <h3>Add course</h3>
@@ -28,6 +30,25 @@ export default function CoursesPage() {
           </Form>
         )}
       </Formik>
+      <div>
+        <h3>Course List:</h3>
+        <ul>
+          {courses.map((course, index) => (
+            <li key={index}>
+              Title: {course.title}, Lecturer: {course.lecturer}, Room:{" "}
+              {course.room}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    courses: state.courses,
+  };
+}
+
+export default connect(mapStateToProps, { createCourse })(CoursesPage);
